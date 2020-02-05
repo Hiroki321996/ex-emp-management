@@ -30,4 +30,14 @@ public class EmployeeService {
 	public List<Employee> showList(){
 		return repository.findAll();
 	}
+	
+	/**
+	 *主キーで従業員情報を検索します
+	 * 
+	 * @param id 指定されるid
+	 * @return　主キーで検索されたその一行の従業員情報
+	 */
+	public Employee showDetail(Integer id) {
+		return repository.load(id);
+	}
 }
