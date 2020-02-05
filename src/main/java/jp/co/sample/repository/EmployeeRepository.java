@@ -49,7 +49,7 @@ public class EmployeeRepository {
 	 * @return employeeドメインのリスト
 	 */
 	public List<Employee> findAll(){
-		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ;";
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY id ;";
 		
 		return template.query(sql, EMPLOYEE_ROW_MAPPER);
 	}
@@ -79,6 +79,14 @@ public class EmployeeRepository {
 		String sql = "UPDATE employees SET dependents_count = :dependentsCount WHERE id = :id ;";
 		
 		template.update(sql, param);
+	}
+	
+	public List<Employee> finEach10RowsOfAll(Integer offset){
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY id LIMIT 10 OFFSET :offset ;";
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("offset", offset);
+		
+		return template.query(sql, param,EMPLOYEE_ROW_MAPPER);
 	}
 	
 	
