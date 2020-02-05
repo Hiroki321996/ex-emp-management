@@ -1,5 +1,7 @@
 package jp.co.sample.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -61,10 +63,13 @@ public class AdministratorRepository {
 			return null;
 		}
 		
-//		if(administrator == null) {
+//		もしくは、というかこっちの方がtry{}catchよりも良い！！！！！！！！----------------------------------------------
+//		List<Administrator> adminList = template.query(sql, param,ADMINISTRATOR_ROW_MAPPER);
+//		if(adminList.size() == 0) {
 //			return null;
-//　　　　}
-
+//		}
+//		nullじゃなければ
+//		return adminList.get(0);
 		
 		
 	}
