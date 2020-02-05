@@ -1,7 +1,10 @@
 package jp.co.sample.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,6 +23,8 @@ import jp.co.sample.service.AdministratorService;
 @RequestMapping("/")
 public class AdministratorController {
 
+	@Autowired
+	private HttpSession session;
 	
 	@Autowired
 	private AdministratorService service;
@@ -71,5 +76,26 @@ public class AdministratorController {
 		service.insert(administrator);
 		
 		return "redirect:/";
+	}
+	
+	/**
+	 * ログイン処理を行い、メールアドレスとパスワードがあっていればその名前を返し従業員のリストへ飛ばす.
+	 * 
+	 * @param form ログインのリクエストパラメータ
+	 * @param model　リクエストスコープ
+	 * @return　従業員のリスト画面
+	 */
+	@RequestMapping("/login")
+	public String login(LoginForm form,Model model) {
+		Administrator administrator = service.login(form.getMailAddress(), form.getPassword());
+		
+		if(administrator == null) {
+			model.addAttribute("message", "メールアドレス又はパスワードが不正です");
+		}else {
+			session.setAttribute("administratorName", administrator.getName());
+		}
+		
+		return "forward:/employee/showList";
+		
 	}
 }
