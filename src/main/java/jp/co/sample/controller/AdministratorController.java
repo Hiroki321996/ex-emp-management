@@ -60,7 +60,7 @@ public class AdministratorController {
 	}
 	
 	/**
-	 * ユーザー登録画面.
+	 * ユーザー登録をする.
 	 * 
 	 * @param form Administratorのフォーム
 	 * @return ログイン画面（リダイレクト）
@@ -92,10 +92,10 @@ public class AdministratorController {
 		if(administrator == null) {
 			model.addAttribute("message", "メールアドレス又はパスワードが不正です");
 			return toLogin();
-		}else {
-			session.setAttribute("administratorName", administrator.getName());
-			return "forward:/employee/showList";
 		}
+		
+		session.setAttribute("administratorName", administrator.getName());
+		return "forward:/employee/showList";
 		
 		
 		
