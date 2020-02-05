@@ -99,7 +99,7 @@ public class AdministratorController {
 	}
 	
 	/**
-	 * sessionスコープの中の情報を削除し、ログイン画面に飛ばす.
+	 * sessionスコープの中の情報を削除し、ログイン画面に飛ばす。ログアウト.
 	 * 
 	 * @return ログイン画面
 	 */
