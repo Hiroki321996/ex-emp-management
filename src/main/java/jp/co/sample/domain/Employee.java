@@ -61,7 +61,7 @@ public class Employee {
 	private Integer salary;
 
 	/**
-	 * 電話番号
+	 * 特性
 	 */
 	private String characteristics;
 
