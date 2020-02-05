@@ -1,7 +1,7 @@
 package jp.co.sample.form;
 
 /**
- * リクエストパラメータを受け取るform
+ * 管理者情報のリクエストパラメータを受け取るform.
  * 
  * @author sanihiro
  *

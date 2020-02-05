@@ -11,7 +11,8 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Administrator;
 
 /**
- * administratorのリポジトリ
+ * administratorsテーブルを操作するリポジトリ.
+ * 
  * 
  * @author sanihiro
  *
@@ -24,7 +25,7 @@ public class AdministratorRepository {
 		
 		administrator.setId(rs.getInt("id"));
 		administrator.setName(rs.getString("name"));
-		administrator.setMailAddress(rs.getString("mail-address"));
+		administrator.setMailAddress(rs.getString("mail_address"));
 		administrator.setPassword(rs.getString("password"));
 		return administrator;
 	};
@@ -33,34 +34,38 @@ public class AdministratorRepository {
 	private NamedParameterJdbcTemplate template;
 	
 	/**
-	 * insert文
+	 * 管理者情報を登録する.
 	 * 
-	 * @param administrator
+	 * @param administrator 管理者情報
 	 */
 	public void insert(Administrator administrator) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
-		String sql = "INSERT INTO administrators (name,mail_addres,password) VALUES(:name,:mail_address,:password) ;";
+		String sql = "INSERT INTO administrators (name,mail_address,password) VALUES (:name,:mailAddress,:password) ;";
 		
 		template.update(sql, param);
 	}
 	
 	/**
-	 * メールアドレスとパスワードを一致した一行を返します
+	 * メールアドレスとパスワードを一致した一行を返します.
 	 * 
-	 * @param mailAddress
-	 * @param password
-	 * @return　administratorのドメイン
+	 * @param mailAddress メールアドレス
+	 * @param password　パスワード
+	 * @return　管理者情報
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress,String password) {
 		String sql = "SELECT id,name,mail_address,password FROM administrators WHERE mail_address = :mailAddress AND password = :password ;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password", password);
-		
-		Administrator administrator =  template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
-		
-		if(administrator == null) {
+		try {
+			return  template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
+		}catch(Exception e) {
 			return null;
 		}
 		
-		return administrator;
+//		if(administrator == null) {
+//			return null;
+//　　　　}
+
+		
+		
 	}
 }

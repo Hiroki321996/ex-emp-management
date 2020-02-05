@@ -8,7 +8,7 @@ import jp.co.sample.domain.Administrator;
 import jp.co.sample.repository.AdministratorRepository;
 
 /**
- * Administratorのサービスクラスです
+ * 管理者情報を操作するサービス.
  * 
  * @author sanihiro
  *
@@ -21,9 +21,9 @@ public class AdministratorService {
 	private AdministratorRepository repository;
 	
 	/**
-	 * repositoryのinsertメソッドを呼び出してます
+	 * 管理者情報を登録する.
 	 * 
-	 * @param administrator
+	 * @param administrator 管理者情報
 	 */
 	public void insert(Administrator administrator) {
 		repository.insert(administrator);

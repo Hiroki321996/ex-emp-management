@@ -2,7 +2,7 @@ package jp.co.sample.domain;
 
 
 /**
- * administratorsテーブルの一行分の情報です
+ * 管理者情報を表すドメイン.
  * 
  * @author sanihiro
  *
