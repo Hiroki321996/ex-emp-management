@@ -96,8 +96,16 @@ public class AdministratorController {
 		
 		session.setAttribute("administratorName", administrator.getName());
 		return "forward:/employee/showList";
-		
-		
-		
+	}
+	
+	/**
+	 * sessionスコープの中の情報を削除し、ログイン画面に飛ばす.
+	 * 
+	 * @return ログイン画面
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
 	}
 }
