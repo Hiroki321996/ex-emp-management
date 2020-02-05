@@ -17,6 +17,24 @@ public class UpdateEmployeeForm {
 	 *  扶養人数
 	 */
 	private String dependentsCount;
+	
+	/**
+	 * idをint型に変換.
+	 * 
+	 * @return int型にしたageプロパティ
+	 */
+	public int getIntId() {
+		return Integer.parseInt(id);
+	}
+	
+	/**
+	 * dependentsCountをint型に変換.
+	 * 
+	 * @return int型にしたdependentsCount
+	 */
+	public int getIntDependentsCount() {
+		return Integer.parseInt(dependentsCount);
+	}
 
 	public String getId() {
 		return id;
