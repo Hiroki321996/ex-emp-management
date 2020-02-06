@@ -49,4 +49,8 @@ public class EmployeeService {
 	public void update(Employee employee) {
 		repository.update(employee);
 	}
+	
+	public List<Employee> showEmployee10(Integer page){
+		return repository.findEach10RowsOfAll(page);
+	}
 }
