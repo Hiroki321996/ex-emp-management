@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Employee;
 
 /**
- * employeeテーブルを操作するためのリポジトリです
+ * employeeテーブルを操作するためのリポジトリです.
  * 
  * @author sanihiro
  *
@@ -44,7 +44,7 @@ public class EmployeeRepository {
 	private NamedParameterJdbcTemplate template;
 	
 	/**
-	 *全件検索
+	 *全件検索.
 	 * 
 	 * @return employeeドメインのリスト
 	 */
