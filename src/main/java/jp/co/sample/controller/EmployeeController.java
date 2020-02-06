@@ -76,6 +76,7 @@ public class EmployeeController {
 	@RequestMapping("/showListPage")
 	public String showListPage(int page,Model model) {
 		model.addAttribute("employees10",service.showEmployee10(page));
+		session.setAttribute("pageNow", page);
 		
 		return "employee/showList10";
 		
