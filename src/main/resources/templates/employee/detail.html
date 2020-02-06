@@ -160,6 +160,7 @@
 									</label>
 									<label class="control-label" style="color: red" for="dependentsCount"></label>
 									<input type="hidden" name="id" th:value="${employee.id}">
+									<!-- 下のth:value=は表示させているだけ。フォーム内に表示させているのでth:valueを使う。th:textではフォーム内に表示はできない -->
 									<input type="text" name="dependentsCount" id="dependentsCount" class="form-control" value="3" th:value="${employee.dependentsCount}">
 							    </td>
 							  </tr>
