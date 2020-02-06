@@ -139,7 +139,7 @@
 							      給料
 							    </th>
 							    <td>
-							      <span th:text="${employee.salary}">400000円</span>
+							      <span th:text="${#numbers.formatInteger(employee.salary,1,'COMMA')}">400000円</span>
 							    </td>
 							  </tr>
 							  <tr>
@@ -152,10 +152,10 @@
 							  </tr>
 							  <tr>
 							    <th nowrap>
-							      扶養人数
+							     <label for="dependentsCount"> 扶養人数 </label>
 							    </th>
 							    <td>
-							    	<label class="error-messages">
+							    	<label class="error-messages" for="dependentsCount">
 											扶養人数を入力してください
 									</label>
 									<label class="control-label" style="color: red" for="dependentsCount"></label>
