@@ -32,7 +32,7 @@ public class EmployeeService {
 	}
 	
 	/**
-	 *主キーで従業員情報を検索します
+	 *主キーで従業員情報を検索します.
 	 * 
 	 * @param id 指定されるid
 	 * @return　主キーで検索されたその一行の従業員情報
@@ -50,7 +50,15 @@ public class EmployeeService {
 		repository.update(employee);
 	}
 	
+	/**
+	 * 指定されたページ番号に出る10人の従業員情報を検索する.
+	 * 
+	 * @param page ページ番号
+	 * @return 10人区切りの従業員情報
+	 */
 	public List<Employee> showEmployee10(Integer page){
 		return repository.findEach10RowsOfAll(page);
 	}
+	
+	
 }
