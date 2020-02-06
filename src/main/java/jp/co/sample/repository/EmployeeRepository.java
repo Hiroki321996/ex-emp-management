@@ -1,5 +1,6 @@
 package jp.co.sample.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class EmployeeRepository {
 	 * @return employeeドメインのリスト
 	 */
 	public List<Employee> findAll(){
-		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY id ;";
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY hire_date DESC ;";
 		
 		return template.query(sql, EMPLOYEE_ROW_MAPPER);
 	}
@@ -88,7 +89,7 @@ public class EmployeeRepository {
 	 * @return	10人区切りの従業員情報
 	 */
 	public List<Employee> findEach10RowsOfAll(Integer page){
-		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY id LIMIT 10 OFFSET :page ;";
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY hire_date DESC LIMIT 10 OFFSET :page ;";
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("page", (page - 1) * 10);
 		
@@ -96,15 +97,21 @@ public class EmployeeRepository {
 	}
 	
 	/**
-	 * DB上で従業員情報を全件検索してその数を10で割りページ数を出す.
+	 * DB上で従業員情報を全件検索してその数を10で割りページ数を出して、その分だけ要素数をいれたリストを返す.
 	 * 
 	 * @return 従業員リストのページ数
 	 */
-	public int countPage() {
+	public List<Integer> countPage() {
 		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY id ;";
 		
 		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
-		return employeeList.size() / 10;
+		int count = employeeList.size() / 10 + 1;
+		
+		List<Integer> countPageList = new ArrayList<Integer>();
+		for (int i = 1; i <= count; i++) {
+			countPageList.add(i);
+		}
+		return countPageList;
 	}
 	
 }

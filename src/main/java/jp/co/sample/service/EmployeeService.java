@@ -65,7 +65,7 @@ public class EmployeeService {
 	 * 
 	 * @return ページ数
 	 */
-	public int countPage() {
+	public List<Integer> countPage() {
 		return repository.countPage();
 	}
 }
