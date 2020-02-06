@@ -50,7 +50,7 @@
 		
 		<!-- パンくずリスト -->
 		<ol class="breadcrumb">
-			<li class="active"><a href="list.html" th:href="@{/employee/showList}">従業員リスト</a></li>
+			<li class="active"><a href="list.html" th:href="@{/employee/showList}">従業員リスト全員分</a></li>
 		</ol>
 
 		<!-- table -->
@@ -84,40 +84,13 @@
 								<span th:text="${employee.dependentsCount}">3人</span>人
 							</td>
 						</tr>
-						<tr>
-							<td>
-								<a href="detail.html">
-									<span>山田太郎</span>
-								</a>
-							</td>
-							<td>
-								<span>2016/12/1</span>
-							</td>
-							<td>
-								<span>3人</span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<a href="detail.html">
-									<span>山田太郎</span>
-								</a>
-							</td>
-							<td>
-								<span>2016/12/1</span>
-							</td>
-							<td>
-								<span>3人</span>
-							</td>
-						</tr>
+
 					</tbody>
 				</table>
 				<br>
 				
-				<span>
-				<a href="aiueo.com">1</a>
-				<a href="aiueo.com">1</a>
-				<a href="aiueo.com">1</a>
+				<span th:each="page:${session.pageCount}">
+				<a th:text="${page}" th:href="@{'/employee/showListPage?page='+${page}}"></a>
 				</span>
 
 
