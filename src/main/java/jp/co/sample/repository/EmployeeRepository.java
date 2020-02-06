@@ -56,7 +56,7 @@ public class EmployeeRepository {
 	
 	
 	/**
-	 *主キー検索
+	 *主キー検索.
 	 * 
 	 * @param id
 	 * @return employeeドメイン
@@ -70,7 +70,7 @@ public class EmployeeRepository {
 	}
 	
 	/**
-	 * update文
+	 * update文.
 	 * 
 	 * @param employee
 	 */
@@ -95,6 +95,16 @@ public class EmployeeRepository {
 		return template.query(sql, param,EMPLOYEE_ROW_MAPPER);
 	}
 	
-	
+	/**
+	 * DB上で従業員情報を全件検索してその数を10で割りページ数を出す.
+	 * 
+	 * @return 従業員リストのページ数
+	 */
+	public int countPage() {
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY id ;";
+		
+		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
+		return employeeList.size() / 10;
+	}
 	
 }
