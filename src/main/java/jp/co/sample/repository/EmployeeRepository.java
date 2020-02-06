@@ -81,10 +81,16 @@ public class EmployeeRepository {
 		template.update(sql, param);
 	}
 	
-	public List<Employee> finEach10RowsOfAll(Integer offset){
-		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY id LIMIT 10 OFFSET :offset ;";
+	/**
+	 * オフセットで指定された10人の従業員情報を抽出する.
+	 * 
+	 * @param offset ページ番号
+	 * @return	10人区切りの従業員情報
+	 */
+	public List<Employee> findEach10RowsOfAll(Integer page){
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY id LIMIT 10 OFFSET :page ;";
 		
-		SqlParameterSource param = new MapSqlParameterSource().addValue("offset", offset);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("page", (page - 1) * 10);
 		
 		return template.query(sql, param,EMPLOYEE_ROW_MAPPER);
 	}
