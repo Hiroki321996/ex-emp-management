@@ -60,5 +60,12 @@ public class EmployeeService {
 		return repository.findEach10RowsOfAll(page);
 	}
 	
-	
+	/**
+	 * DB上で従業員情報を全件検索してその数を10で割りページ数を出す.
+	 * 
+	 * @return ページ数
+	 */
+	public int countPage() {
+		return repository.countPage();
+	}
 }
